@@ -30,7 +30,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
     const plannerConfigDir = path.dirname(picked[0].fsPath);
 
-    const output = vscode.window.createOutputChannel('BuildiutMap');
+    const output = vscode.window.createOutputChannel('BuildoutMap');
 
     execFile(
       exePath,
