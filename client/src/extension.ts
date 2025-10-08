@@ -14,13 +14,26 @@ import * as path from 'path';
 
 export async function activate(context: vscode.ExtensionContext) {
 
-    const disposable = vscode.commands.registerCommand('buildoutmap.run', () => {
+    context.subscriptions.push(vscode.commands.registerCommand('buildoutmap.run', async () => {
     const filePath = vscode.window.activeTextEditor!.document.uri.fsPath; // assume a file is open
     const exePath = vscode.Uri.joinPath(context.extensionUri, 'bin.exe', 'BuildoutMap.exe').fsPath;
+    const picked = await vscode.window.showOpenDialog({
+      canSelectMany: false,
+      openLabel: 'Select PlannerConfig',
+      filters: {
+        'YAML files': ['yml', 'yaml']
+      },
+    });
+
+    if (!picked || picked.length === 0) {
+      return; // user cancelled
+    }
+    const plannerConfigDir = path.dirname(picked[0].fsPath);
+
 
     execFile(
       exePath,
-      ['--template-search-paths', filePath],
+      ['-c', plannerConfigDir, '--template-search-paths', filePath],
       { windowsHide: true, cwd: path.dirname(filePath) },
       (err, stdout, stderr) => {
         const msg =
@@ -31,9 +44,7 @@ export async function activate(context: vscode.ExtensionContext) {
         vscode.window.showInformationMessage(msg);
       }
     );
-  });
-
-  context.subscriptions.push(disposable);
+  }));
 
 
     //initialize services (application + infra)
