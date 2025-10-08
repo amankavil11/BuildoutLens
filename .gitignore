@@ -454,3 +454,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 package-lock.json
+
+#BuildoutMap CLI dlls and .exe
+!bin.exe/** */
