@@ -192,6 +192,7 @@ StyleCopReport.xml
 *.vssscc
 .builds
 *.pidb
+*.sln
 *.svclog
 *.scc
 

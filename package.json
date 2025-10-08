@@ -1,5 +1,5 @@
 {
-  "name": "buildoutlensv2",
+  "name": "buildoutlens",
   "version": "1.0.0",
   "description": "BuildoutLens VS Code Extension for Infrastructure YAML",
   "main": "./client/out/extension.js",
@@ -14,7 +14,6 @@
   "activationEvents": [
     "onStartupFinished",
     "onLanguage:yaml",
-    "onCommand:buildoutlens.createServiceTemplate",
     "onFileSystem:file",
     "onFileSystem:untitled"
   ],
