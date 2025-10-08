@@ -15,14 +15,16 @@
     "onStartupFinished",
     "onLanguage:yaml",
     "onFileSystem:file",
-    "onFileSystem:untitled"
+    "onFileSystem:untitled",
+    "onCommand:buildoutmap.run"
   ],
   "contributes": {
     "commands": [
       {
         "command": "buildoutlens.createServiceTemplate",
         "title": "Create Service Template"
-      }
+      },
+      { "command": "buildoutmap.run", "title": "BuildOutMap: Validate Current File" }
     ]
   },
   "workspaces": [
