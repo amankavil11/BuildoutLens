@@ -34,7 +34,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     execFile(
       exePath,
-      ['-c', plannerConfigDir, '--template-search-paths', filePath],
+      ['-c', plannerConfigDir, '--template-search-paths', path.dirname(filePath)],
       { windowsHide: true, cwd: path.dirname(filePath) },
       (err, stdout, stderr) => {
         const msg =
