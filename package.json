@@ -1,0 +1,48 @@
+{
+  "name": "buildoutlensv2",
+  "version": "1.0.0",
+  "description": "BuildoutLens VS Code Extension for Infrastructure YAML",
+  "main": "./client/out/extension.js",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:yaml",
+    "onCommand:buildoutlens.createServiceTemplate",
+    "onFileSystem:file",
+    "onFileSystem:untitled"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "buildoutlens.createServiceTemplate",
+        "title": "Create Service Template"
+      }
+    ]
+  },
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run --workspace client build && dotnet build ./server",
+    "watch": "npm run --workspace client watch",
+    "lint": "npm run --workspace client lint || true",
+    "clean": "rimraf client/out && dotnet clean ./server",
+    "package": "vsce package ./client"
+  },
+  "keywords": ["vscode-extension", "yaml", "language-server", "infrastructure"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "@vscode/vsce": "^2.22.0"
+  }
+}
