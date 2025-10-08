@@ -30,6 +30,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
     const plannerConfigDir = path.dirname(picked[0].fsPath);
 
+    const output = vscode.window.createOutputChannel('BuildiutMap');
 
     execFile(
       exePath,
@@ -41,7 +42,9 @@ export async function activate(context: vscode.ExtensionContext) {
           (stderr && stderr.toString().trim()) ||
           (err && err.message) ||
           'BuildOutMap finished.';
-        vscode.window.showInformationMessage(msg);
+        output.clear();
+        output.appendLine(msg);
+        output.show(true);
       }
     );
   }));
