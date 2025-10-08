@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Regions>
+	<!-- New region template. NOTE: This is now automatically added during new region buildout.
+       Updates to below default values must also be reflected in the Networking-PrivateDns-Buildout repo.
+       See https://dev.azure.com/msazure/AzureWiki/_wiki/wikis/AzureWiki.wiki/46682 on how to fill in the values.
+
+  <Region Name=[change me]>
+    <EnvironmentSetting Name="CrossNetscalerDcs" Value="" />
+    <EnvironmentSetting Name="CrossNetscalerIps" Value="" />
+    <EnvironmentSetting Name="IdnsPeerRegions" Value=[change me] />
+    <EnvironmentSetting Name="IdnsValidZoneIds" Value="" />
+    <EnvironmentSetting Name="IdnsApplianceId" Value=[change me] />
+    <EnvironmentSetting Name="IdnsGcsRegion" Value=[change me] />
+    <EnvironmentSetting Name="IdnsStorageAccountName" Value=[change me] />
+    <EnvironmentSetting Name="IdnsPrivateDnsNonEmptyVirtualNetworkEnabled" Value="false" />
+    <EnvironmentSetting Name="ArmRegionDisplayName" Value=[change me] />
+    <EnvironmentSetting Name="RrDnsUseCloudDnsData" Value="False" />
+    <EnvironmentSetting Name="RrDnsEdgeDnsForwarders" Value="1.2.3.4" />
+    <EnvironmentSetting Name="RrDnsGcsRegion" Value=[change me] />
+    <EnvironmentSetting Name="RrDnsRunnerMsiId" Value=[change me] />
+    <EnvironmentSetting Name="RrDnsEnableManagementAgentMonitoring" Value="false" />
+    <EnvironmentSetting Name="RrDnsManagementServiceEndpoint" Value="1.2.3.4" />
+    <EnvironmentSetting Name="RrDnsEnablePersistentStore" Value="true"/>
+    <EnvironmentSetting Name="RrDnsEnablePersistentStoreForPrivateResolver" Value="false"/>
+    <EnvironmentSetting Name="RrDnsEnableManagedResolution" Value="false"/>
+    <EnvironmentSetting Name="RrDnsStaticForwardersForManagedResolution" Value="1.2.3.4"/>
+    <EnvironmentSetting Name="RrDnsCacheScopeLimit" Value="2000000" />
+    <EnvironmentSetting Name="RrDnsServerScopeLimit" Value="500000" />
+    <EnvironmentSetting Name="RrDnsPerVnetQpsFromCache" Value="5000" />
+    <EnvironmentSetting Name="RrDnsPerVnetQpsFromRecursion" Value="1000" />
+    <EnvironmentSetting Name="RrDnsEnablePerVnetQpsLimit" Value="false" />
+    <EnvironmentSetting Name="RrDnsEnableQueryLogging" Value="false" />
+    <EnvironmentSetting Name="RrDnsEnableSecurityPolicy" Value="false" />
+    <EnvironmentSetting Name="IdnsRunnerMsiId" Value=[change me] />
+    <EnvironmentSetting Name="IdnsCosmosDbAccountExists" Value="true" />
+    <EnvironmentSetting Name="CosmosDbExternalReadRegion" Value=[change me] />
+    <EnvironmentSetting Name="RrDnsCosmosDbSyncManagerRegion" Value="change me" />
+    <EnvironmentSetting Name="RrDnsCosmosDbPreferredLocations" Value="" />
+    <EnvironmentSetting Name="CosmosDbPreferredLocations" Value="" />
+    <EnvironmentSetting Name="IdnsRegionalControlPlaneEnabled" Value="true" />
+    <EnvironmentSetting Name="SyntheticsPrimaryLocation" Value="[change me]" />
+    <EnvironmentSetting Name="SyntheticsSecondaryLocation" Value="[change me]" />
+    <EnvironmentSetting Name="InternalDnsControlPlaneDisabled" Value="true" />
+    <EnvironmentSetting Name="ConditionalForwarderSettings" Value="" />
+    <EnvironmentSetting Name="IdnsConditionalForwarderEnabled" Value="false" />
+    <EnvironmentSetting Name="IdnsSyncAgentDnsDisabled" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetArmMigrationEnabledForNewVnet" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetArmMigrationEnabledForExistingVnet" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetRdfeMigrationEnabledForNewVnet" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetRdfeMigrationEnabledForExistingVnet" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetArmMigrationMaxVnetsToMigratePerIteration" Value="100" />
+    <EnvironmentSetting Name="IdnsVnetArmMigrationRandomNumberThreshold" Value="1" />
+    <EnvironmentSetting Name="IdnsVnetArmMigrationStatisticsEnabled" Value="false" />
+    <EnvironmentSetting Name="IdnsVnetDeletionEnabled" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetDeletionInitialProcessingDelayInMinutes" Value="40" />
+    <EnvironmentSetting Name="IdnsVnetDeletionCleanupEnabled" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetDeletionCleanupAutoScaleEnabled" Value="true" />
+    <EnvironmentSetting Name="IdnsVnetCleanupJobMaxVnetsToPopulatePerIteration" Value="75" />
+    <EnvironmentSetting Name="IdnsVnetCleanupJobMaxVnetsToDeletePerIteration" Value="150" />
+    <EnvironmentSetting Name="IdnsVnetCleanupJobMaxVnetsToDeleteInParallel" Value="20" />
+    <EnvironmentSetting Name="IdnsVnetCleanupJobMaxVnetsToDeleteInParallel" Value="20" />
+    <EnvironmentSetting Name="IdnsRcpCosmosDbManagedKeyAutoRotationEnabled" Value="false" />
+  </Region>
+  -->
+</Regions>

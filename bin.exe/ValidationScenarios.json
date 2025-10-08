@@ -1,0 +1,32 @@
+{
+  "DsmsCertificateExists": {
+    "Cluster": "dsms.kusto.windows.net",
+    "Database": "dsms",
+    "Query": "declare query_parameters(cloudName: string); GetDSMSCertInformation | where Certificate contains '/aad-gateway/certificates/chained/dsts.core.windows.net' | where CloudName =~ cloudName | count | project toint(Count >= 1)",
+    "Explanation": "Checks if the certificates for new buildout regions have been ACLed in DSMS.",
+    "Parameters": {
+      "cloudName": "RegionMapFabricRegionName"
+    },
+    "ErrorMessage": "Certificates are not yet ACLed in DSMS. This operation can take up to 12 hours, so stay patient or check: https://identitydivision.visualstudio.com/IdentityWiki/_wiki/wikis/IdentityWiki.wiki/58403/Foundational-Gateway-Buildout-Process?anchor=2.2.2-provision-secrets-and-machines"
+  },
+  "GatewayDeployment": {
+    "Cluster": "Aadgwwst",
+    "Database": "AADGatewayProd",
+    "Query": "declare query_parameters(datacenter: string); let errorsLessThan10 = union AllDatacenterAlertEvents, AllRequestAlertEvents | where env_time > ago(2d) and Slice == 'SliceP_Buildout' and Datacenter =~ datacenter | summarize count() by ServiceName | summarize toint(binary_all_and(toint(count_ < 10)) == 1); let successRequestsMoreThan10000 = AllRequestSummaryEvents | where env_time > ago(1h) and Slice == 'SliceP_Buildout' and Datacenter =~ datacenter and EffectiveStatusCode in ('200', '200.0')  | summarize count() by ServiceName | summarize toint(binary_all_and(toint(count_ > 10000)) == 1); print toint(binary_and(toscalar(errorsLessThan100), toscalar(successRequestsMoreThan10000)))",
+    "Explanation": "For each ScaleUnit, validates there are more than 10000 successful requests in the past hour AND there are no more than 10 errors in the past 2 days.",
+    "Parameters": {
+      "datacenter": "RegionInfoRegionCode"
+    },
+    "ErrorMessage": "There are either errors or not enough successful requests in Gateway Kusto logs for the new regions. Consult: https://identitydivision.visualstudio.com/IdentityWiki/_wiki/wikis/IdentityWiki.wiki/58403/Foundational-Gateway-Buildout-Process?anchor=2.5-validation"
+  },
+  "DataDeployment": {
+    "Cluster": "Aadgwwst",
+    "Database": "AADGatewayProd",
+    "Explanation": "Tries to find a successful data deployment by bucketing Root, Host and Service configs in 10m intervals and looks if there are any distinct buckets for a single config version.",
+    "Query": "declare query_parameters(datacenter: string); let configVersions = AllRequestSummaryEvents | where env_time > ago(7d) | where TargetService == 'aadg' | where Datacenter =~ datacenter | where Slice == 'SliceP' | where ServiceConfigVersion != 0 and HostConfigVersion != 0 and RootConfigVersion != 0 | summarize make_set(RootConfigVersion), make_set(HostConfigVersion), make_set(ServiceConfigVersion) by bin(env_time, 10m), ServiceName; let root = configVersions | where array_length(set_RootConfigVersion) == 1 | summarize toint(dcount(toint(set_RootConfigVersion[0])) >= 2); let service = configVersions | where array_length(set_ServiceConfigVersion) == 1 | summarize toint(dcount(toint(set_ServiceConfigVersion[0])) >= 2); let host = configVersions | where array_length(set_HostConfigVersion) == 1 | summarize toint(dcount(toint(set_HostConfigVersion[0])) >= 2); print toint(binary_or(toscalar(root), toint(binary_or(toscalar(service), toscalar(host)))))",
+    "Parameters": {
+      "datacenter": "RegionInfoRegionCode"
+    },
+    "ErrorMessage": "Didn't find a successfull new data deployment. You have to make a dummy change to trigger it manually: https://identitydivision.visualstudio.com/IdentityWiki/_wiki/wikis/IdentityWiki.wiki/58403/Foundational-Gateway-Buildout-Process?anchor=3.3-confirm-the-config-rollout-can-be-fully-populated-to-all-machines-after-moving-from-pe-to-ve"
+  }
+}
